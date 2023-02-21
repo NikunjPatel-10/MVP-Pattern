@@ -1,2 +1,13 @@
-<h1 class="text-primary">Hello-world</h1>
-<router-outlet></router-outlet>
+<div class="h-100 d-flex flex-column">
+    <div>
+        <app-header></app-header>
+    </div>
+    <div class="d-flex flex-grow-1">
+        <div class="h-100">
+            <app-sidebar></app-sidebar>
+        </div>
+        <div class="flex-grow-1">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</div>

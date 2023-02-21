@@ -9,6 +9,8 @@ import { UserListContainerComponent } from './user-list-container/user-list-cont
 import { UserListPresentationComponent } from './user-list-container/user-list-presentation/user-list-presentation.component';
 import { UserDetailContainerComponent } from './user-detail-container/user-detail-container.component';
 import { UserDetailPresentationComponent } from './user-detail-container/user-detail-presentation/user-detail-presentation.component';
+import { UserListPresenterService } from './user-list-container/user-list-presenter/user-list-presenter.service';
+import {ReactiveFormsModule} from '@angular/forms'
 
 
 @NgModule({
@@ -19,11 +21,14 @@ import { UserDetailPresentationComponent } from './user-detail-container/user-de
     UserListContainerComponent,
     UserListPresentationComponent,
     UserDetailContainerComponent,
-    UserDetailPresentationComponent
+    UserDetailPresentationComponent,
+   
   ],
   imports: [
     CommonModule,
-    UserRoutingModule
-  ]
+    UserRoutingModule,
+    ReactiveFormsModule,
+  ],
+  providers:[]
 })
 export class UserModule { }

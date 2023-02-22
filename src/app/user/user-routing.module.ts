@@ -19,8 +19,8 @@ const routes: Routes = [{
     },
 
     {
-      path: 'form',
-      component: UserFormContainerComponent
+      path: 'add',
+      component: UserListContainerComponent
     }
 
   ]

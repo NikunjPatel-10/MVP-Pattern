@@ -12,6 +12,9 @@ export class UserFormPresenterService {
     this.userData$ = this.userData.asObservable()
   }
 
+
+  // create a formbuilder for userForm
+
   public buildForm(): FormGroup {
     return this.formBuilder.group({
       id: [''],
@@ -24,6 +27,7 @@ export class UserFormPresenterService {
     })
   }
 
+// for save userdata from presentation component
 
   submitData(userData: FormGroup) {
     this.userData.next(userData.value)

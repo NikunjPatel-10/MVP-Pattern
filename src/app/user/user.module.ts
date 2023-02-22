@@ -11,6 +11,7 @@ import { UserDetailContainerComponent } from './user-detail-container/user-detai
 import { UserDetailPresentationComponent } from './user-detail-container/user-detail-presentation/user-detail-presentation.component';
 import { UserListPresenterService } from './user-list-container/user-list-presenter/user-list-presenter.service';
 import {ReactiveFormsModule} from '@angular/forms'
+import { UserApiService } from './service/user-api.service';
 
 
 @NgModule({
@@ -29,6 +30,6 @@ import {ReactiveFormsModule} from '@angular/forms'
     UserRoutingModule,
     ReactiveFormsModule,
   ],
-  providers:[]
+  providers:[UserApiService]
 })
 export class UserModule { }

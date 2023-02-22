@@ -7,6 +7,11 @@ import { user } from '../../user.model';
 export class UserFormPresenterService {
   public userData: Subject<user>;
   public userData$: Observable<user>
+
+  /**
+   * 
+   * @param formBuilder 
+   */
   constructor(private formBuilder: FormBuilder) {
     this.userData = new Subject();
     this.userData$ = this.userData.asObservable()

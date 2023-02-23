@@ -1,22 +1,22 @@
 {
   "userdata": [
     {
-      "id": 2,
-      "name": "dssdsd",
-      "address": "dwds",
-      "mobileNo": "12334",
-      "email": "45545",
+      "id": 1,
+      "name": "dsd",
+      "address": "swd",
+      "mobileNo": "1323434",
+      "email": "sdsdf",
       "gender": "female",
-      "birthDate": "2023-02-09"
+      "birthDate": "2023-02-03"
     },
     {
-      "id": 3,
-      "name": "rtrt",
-      "address": "trtrt",
-      "mobileNo": "56655656",
-      "email": "rtrgg",
-      "gender": "female",
-      "birthDate": "2023-02-01"
+      "id": 2,
+      "name": "nikunj",
+      "address": "ddd",
+      "mobileNo": "2133334",
+      "email": "dffrfvvcd",
+      "gender": "male",
+      "birthDate": "2023-02-04"
     }
   ]
 }

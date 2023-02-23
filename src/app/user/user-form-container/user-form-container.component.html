@@ -1,2 +1,7 @@
 
-<app-user-form-presentation  (addUser)="saveUserData($event)"></app-user-form-presentation>
+<app-user-form-presentation  (addUser)="saveUserData($event)"
+                              (editUser)="editUserData($event)"
+                              [editData]="editData"
+                              (editUserData)="updateUserData($event)">
+
+</app-user-form-presentation>

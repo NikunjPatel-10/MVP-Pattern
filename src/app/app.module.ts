@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { CoreModule } from './core/core.module';
 import { UserModule } from './user/user.module';
 import {HttpClientModule} from '@angular/common/http'
+import { DataCommunicationService } from './user/service/data-communication.service';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import {HttpClientModule} from '@angular/common/http'
     UserModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [DataCommunicationService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

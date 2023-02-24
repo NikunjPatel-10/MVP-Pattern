@@ -29,7 +29,6 @@ export class UserFormPresentationComponent implements OnInit {
     
     if (res) {
       this._editData = res   
-      debugger
       this.userForm.patchValue(this._editData)
     }
   }

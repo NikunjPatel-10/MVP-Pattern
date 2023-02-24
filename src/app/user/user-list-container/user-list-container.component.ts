@@ -26,8 +26,10 @@ export class UserListContainerComponent implements OnInit {
  */
 deleteUserList(id:any){
 this.user_api_service.deleteUserData(id).subscribe(()=>{
-  alert("are you sure do you wnat to delete data")
+  const a = confirm("are you sure do you wnat to delete data")
+  if(a){
     this.userList$ =  this.user_api_service.getUserData()
+  }
 })
 
 }

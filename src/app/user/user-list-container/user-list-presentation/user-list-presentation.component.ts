@@ -57,9 +57,9 @@ export class UserListPresentationComponent {
     /**
      * get data from from after update it
      */
-    this._dataCommunicationService.updateData$.subscribe((res:user[])=>{
+    this._dataCommunicationService.updateData$.subscribe((res: user[]) => {
       this._userList = res
-      console.log(res);   
+      console.log(res);
     })
   }
 
@@ -80,11 +80,15 @@ export class UserListPresentationComponent {
    * @param id 
    */
   public editUserList(id: number) {
-   
+
     this._userListPresenterService.editUser(id)
     console.log(id);
     this._cdkOverlayService.displayOverlay(UserFormContainerComponent);
     this.router.navigate(['/user/edit', id])
+  }
+
+  public getUserDetails(id: number) {
+    this.router.navigate(['/user/detail',id])
   }
 
 }

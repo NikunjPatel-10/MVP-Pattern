@@ -48,8 +48,7 @@ ngOnInit(): void {
     this.id = id
     this.user_api_service.getUserById(id).subscribe(res => {
       this.editData = res
-      console.log(res);
-   
+      console.log(res);  
     })
   }
 

@@ -51,9 +51,9 @@ export class UserApiService {
   }
 
 
-  public updateUserData(User:user ,id:number){
+  public updateUserData(User:user ,id:number):Observable<user>{
     const url = this.baseUrl + "userdata/" + id
-    return this.http.put(url,User)
+    return this.http.put<user>(url,User)
   }
 
 }

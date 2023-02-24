@@ -8,7 +8,7 @@ import { UserFormContainerComponent } from '../../user-form-container/user-form-
 export class UserListPresenterService {
   public deleteData: Subject<number>
   public deleteData$: Observable<number>
-  constructor(private dataCommunication:DataCommunicationService) {
+  constructor(private dataCommunication: DataCommunicationService) {
     this.deleteData = new Subject(),
       this.deleteData$ = this.deleteData.asObservable()
   }
@@ -18,10 +18,15 @@ export class UserListPresenterService {
    *to delete userlist using subject and pass to presentation component 
    * @param id 
    */
-deleteUserList(id:number){
-this.deleteData.next(id)
-}
-editUser(id:number){
-this.dataCommunication.editData.next(id)
-}
+  deleteUserList(id: number) {
+    this.deleteData.next(id)
+  }
+
+  /**
+   * 
+   * @param id 
+   */
+  editUser(id: number) {
+    this.dataCommunication.userId.next(id)
+  }
 }

@@ -59,6 +59,7 @@ export class UserListPresentationComponent {
      */
     this._dataCommunicationService.updateData$.subscribe((res:user[])=>{
       this._userList = res
+      console.log(res);   
     })
   }
 

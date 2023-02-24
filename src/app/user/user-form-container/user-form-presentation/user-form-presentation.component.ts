@@ -18,7 +18,7 @@ export class UserFormPresentationComponent implements OnInit {
  */
 
   @Output() public addUser: EventEmitter<user>
-  @Output() public editUser: EventEmitter<user>
+  @Output() public userId: EventEmitter<user>
   @Output() public editUserData: EventEmitter<any>
 
   /**
@@ -28,7 +28,8 @@ export class UserFormPresentationComponent implements OnInit {
     
     
     if (res) {
-      this._editData = res
+      this._editData = res   
+      debugger
       this.userForm.patchValue(this._editData)
     }
   }
@@ -52,12 +53,11 @@ public text :string = ''
   constructor(private _userFormPresenterService: UserFormPresenterService, private _cdkOverlayService: CdkOverlayService, public _dataCommunicationService: DataCommunicationService) {
     this.userForm = this._userFormPresenterService.buildForm()
     this.addUser = new EventEmitter();
-    this.editUser = new EventEmitter();
+    this.userId = new EventEmitter();
     this.editUserData = new EventEmitter()
 
 
-    console.log(this.editData);
-
+    console.log(this._editData);
   }
 
   ngOnInit(): void {
@@ -74,12 +74,12 @@ public text :string = ''
     /**
      * subscribe data from datacommunication service and send to the container component using output 
      */
-    this._dataCommunicationService.editData.subscribe((res) => {
-      console.log(res);
-      if(res){
-        this.editUser.emit(res)
+    this._dataCommunicationService.userId$.subscribe((id) => {
+      console.log(id);
+      if(id){
+        this.userId.emit(id)
       }
-      this.text = (res)?'Submit': 'Update'
+    
     })
 
 
@@ -90,6 +90,7 @@ public text :string = ''
   public saveUser() {
     this._userFormPresenterService.submitData(this.userForm);
     this._cdkOverlayService.overlayRef.detach()
+
   }
 
   /**
@@ -97,6 +98,7 @@ public text :string = ''
    */
   public cancelFormData() {
     this._cdkOverlayService.overlayRef.detach()
+    this._userFormPresenterService.onCancel()
   }
 
 

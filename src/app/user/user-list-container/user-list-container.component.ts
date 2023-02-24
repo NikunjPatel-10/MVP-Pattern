@@ -17,7 +17,6 @@ export class UserListContainerComponent implements OnInit {
 
   ngOnInit(): void {
     this.userList$ = this.user_api_service.getUserData()
-
   }
 
   

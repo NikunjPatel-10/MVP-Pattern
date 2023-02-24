@@ -4,12 +4,14 @@ import { user } from '../user.model';
 
 @Injectable()
 export class DataCommunicationService {
-  public editData:   BehaviorSubject <any>;
-  public updateData : Subject<user[]>;
-  public updateData$ : Observable<user[]>;
+  public userId:   BehaviorSubject <any>;
+  public userId$: Observable<any>
+  public updateData : Subject<any>;
+  public updateData$ : Observable<any>;
   // public editData$: Observable<any>
   constructor() {
-    this.editData = new BehaviorSubject(0);
+    this.userId = new BehaviorSubject('');
+    this.userId$ = this.userId.asObservable()
     this.updateData = new Subject();
     this.updateData$ = this.updateData.asObservable()
     // this.editData$ = this.editData.asObservable()

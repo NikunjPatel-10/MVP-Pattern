@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
+import { DataCommunicationService } from '../../service/data-communication.service';
 import { user } from '../../user.model';
 
 @Injectable()
@@ -12,14 +13,17 @@ export class UserFormPresenterService {
    * 
    * @param formBuilder 
    */
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private formBuilder: FormBuilder, public _dataCommunicationService: DataCommunicationService) {
     this.userData = new Subject();
     this.userData$ = this.userData.asObservable()
   }
 
 
-  // create a formbuilder for userForm
 
+  /**
+   * create a formbuilder for userForm
+   * @returns 
+   */
   public buildForm(): FormGroup {
     return this.formBuilder.group({
       id: [''],
@@ -32,9 +36,19 @@ export class UserFormPresenterService {
     })
   }
 
-// for save userdata from presentation component
 
+  /**
+   * for save userdata from presentation component
+   */
   submitData(userData: FormGroup) {
     this.userData.next(userData.value)
+    this._dataCommunicationService.userId.next('')
+  }
+
+  /**
+   * to clear the data when form reset
+   */
+  onCancel() {
+    this._dataCommunicationService.userId.next('')
   }
 }

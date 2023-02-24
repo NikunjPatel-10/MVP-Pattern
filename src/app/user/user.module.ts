@@ -12,6 +12,7 @@ import { UserDetailPresentationComponent } from './user-detail-container/user-de
 import { UserListPresenterService } from './user-list-container/user-list-presenter/user-list-presenter.service';
 import {ReactiveFormsModule} from '@angular/forms'
 import { UserApiService } from './service/user-api.service';
+import { DataCommunicationService } from './service/data-communication.service';
 
 
 @NgModule({

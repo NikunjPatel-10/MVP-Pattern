@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { UserDetailContainerComponent } from './user-detail-container/user-detail-container.component';
 import { UserFormContainerComponent } from './user-form-container/user-form-container.component';
 import { UserListContainerComponent } from './user-list-container/user-list-container.component';
 import { UserComponent } from './user.component';
@@ -25,6 +26,10 @@ const routes: Routes = [{
     {
       path:'edit/:id',
       component:UserListContainerComponent
+    },
+    {
+      path:'detail/:id',
+      component:UserDetailContainerComponent
     }
 
   ]

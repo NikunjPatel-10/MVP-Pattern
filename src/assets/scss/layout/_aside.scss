@@ -1,0 +1,46 @@
+.sidebar-bg-color {
+  background-color: $main-bg-color;
+}
+
+.nav-item {
+
+  .active,
+  :hover {
+    background-color: hsl(220deg 10% 30%);
+  }
+
+}
+
+.nav-link {
+  margin-right: -15px;
+  margin-left: -24px;
+  padding: 20px 35px;
+  display: flex;
+  align-items: center;
+
+  .nav-text {
+    margin-left: 20px;
+    font-size: 20px;
+    font-weight: 500;
+    color: white;
+  }
+
+  .nav-icon {
+    font-size: 25px;
+  }
+
+}
+
+.nav-table{
+    color:$sky-blue-color
+}
+
+#toggle-sidebar{
+  display: none;
+}
+
+#toggle-sidebar:checked + .sidebar-bg-color{
+  transform: translateX(-270px);
+  transition: 0.1s linear;
+  display: none;
+}

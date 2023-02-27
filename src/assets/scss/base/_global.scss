@@ -1,17 +1,40 @@
 // global css
-*{
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-}
-html,body{
-    height: 100%;
-}
-body{
-    overflow: hidden;
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
 }
 
-th,td{
-    padding: 15px;
-    text-align: left;
+html,
+body {
+  height: 100%;
+}
+
+body {
+  overflow: hidden;
+}
+
+th,
+td {
+  padding: 15px;
+  text-align: left;
+}
+
+.sky-blue {
+  color: $sky-blue-color;
+}
+
+.light-red {
+  color: $light-red-color;
+}
+
+.light-yellow{
+   color:$light-yellow-color;
+}
+
+.light-green{
+   color: $light-green-color; 
+}
+.bg-color{
+  background-color: hsl(0deg 0% 92%);
 }

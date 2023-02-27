@@ -87,4 +87,12 @@ export class UserListPresentationComponent {
     this.router.navigate(['/user/edit', id])
   }
 
+  /**
+   * 
+   * @param id send id into params
+   */
+  public getUserDetail(id:number){
+    this.router.navigate(['/user/detail', id])
+  }
+
 }

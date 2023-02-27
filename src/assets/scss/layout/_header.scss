@@ -1,0 +1,50 @@
+.header-bg-color {
+  background-color: $main-bg-color;
+}
+
+.image-wrapper {
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
+  img{
+    height:100%;
+    width:100%;
+    border-radius: 50%;
+  }
+}
+
+.nav-message::before{
+    content: "4";
+    position: absolute;
+    top: 6%;
+    right: -10%;
+    background-color: hsl(164deg 77% 41%);
+    color: white;
+    border-radius: 50%;
+    height: 15px;
+    width: 15px;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav-notification::before{
+    content: "7";
+    position: absolute;
+    top: -1%;
+    right: 6%;
+    background-color: hsl(32deg 92% 57%);
+    color: white;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    font-size: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.nav-item{
+  margin: 0px 15px;
+}
+

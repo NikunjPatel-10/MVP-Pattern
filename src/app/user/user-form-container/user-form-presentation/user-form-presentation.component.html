@@ -1,14 +1,16 @@
 
     <form class="formsize p-4  rounded-3" [formGroup]="userForm">
         <div>
+            <input type="file" class="form-control" (change)="onSelectFile($event)">
+        </div>
+        <div>
             <label for="validationServer01" class="form-label">Name:</label>
             <input type="text"  id="" class="form-control" formControlName="name"   >
            
         </div>
         <div>
             <label for="validationServer01" class="form-label">Address:</label>
-            <input type="text"  id="" class="form-control" formControlName="address"
-              >
+            <input type="text"  id="" class="form-control" formControlName="address"  >
         
         </div>
         <div>

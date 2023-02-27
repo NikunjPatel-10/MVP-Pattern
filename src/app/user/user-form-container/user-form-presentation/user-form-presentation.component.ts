@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { CdkOverlayService } from 'src/app/core/service/cdk-overlay.service';
 import { DataCommunicationService } from '../../service/data-communication.service';
@@ -9,10 +9,11 @@ import { UserFormPresenterService } from '../user-form-presenter/user-form-prese
   selector: 'app-user-form-presentation',
   templateUrl: './user-form-presentation.component.html',
   styleUrls: ['./user-form-presentation.component.scss'],
-  viewProviders: [UserFormPresenterService]
+  viewProviders: [UserFormPresenterService],
+  changeDetection:ChangeDetectionStrategy.OnPush
 })
 export class UserFormPresentationComponent implements OnInit {
-
+  public base64!: string
   /**
  *  create a output to add a userdata 
  */
@@ -25,10 +26,10 @@ export class UserFormPresentationComponent implements OnInit {
    * get data from container by Input method
    */
   @Input() public set editData(res: any | null) {
-    
-    
+
+
     if (res) {
-      this._editData = res   
+      this._editData = res
       debugger
       this.userForm.patchValue(this._editData)
     }
@@ -43,14 +44,14 @@ export class UserFormPresentationComponent implements OnInit {
    *  */
   public userForm: FormGroup
   private _editData: any
-public text :string = ''
+  public text: string = ''
   /**
    * 
    * @param _userFormPresenterService 
    * @param _cdkOverlayService 
    * @param _dataCommunicationService 
    */
-  constructor(private _userFormPresenterService: UserFormPresenterService, private _cdkOverlayService: CdkOverlayService, public _dataCommunicationService: DataCommunicationService) {
+  constructor(private _userFormPresenterService: UserFormPresenterService, private _cdkOverlayService: CdkOverlayService, public _dataCommunicationService: DataCommunicationService,   private _changeDetector: ChangeDetectorRef,) {
     this.userForm = this._userFormPresenterService.buildForm()
     this.addUser = new EventEmitter();
     this.userId = new EventEmitter();
@@ -65,7 +66,7 @@ public text :string = ''
      * send data in the container component in container using output
      */
     this._userFormPresenterService.userData$.subscribe((res) => {
-      if(this._editData){
+      if (this._editData) {
         this.editUserData.emit(res)
       }
       this.addUser.emit(res)
@@ -76,13 +77,22 @@ public text :string = ''
      */
     this._dataCommunicationService.userId$.subscribe((id) => {
       console.log(id);
-      if(id){
+      if (id) {
         this.userId.emit(id)
       }
-    
+
     })
 
 
+  }
+
+  onSelectFile(event: any) {
+    this._userFormPresenterService.onSelectFile(event);
+  const a=  this._userFormPresenterService.base64String;
+    this._userFormPresenterService.userProfileImage.subscribe((res) => {
+      this.base64 = res;
+      this._changeDetector.markForCheck()
+    })
   }
 
   // to save userData 

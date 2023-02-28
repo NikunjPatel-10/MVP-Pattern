@@ -10,6 +10,7 @@ import { SearchPipe } from './pipe/search.pipe';
   ],
   imports: [
     CommonModule
-  ]
+  ],
+  exports:[SearchPipe]
 })
 export class SharedModule { }

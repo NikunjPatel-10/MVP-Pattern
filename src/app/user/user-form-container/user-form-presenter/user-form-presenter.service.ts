@@ -1,25 +1,30 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Observable, Subject } from 'rxjs';
 import { DataCommunicationService } from '../../service/data-communication.service';
 import { user } from '../../user.model';
 
 @Injectable()
-export class UserFormPresenterService {
-  public userImage!:File;
-  public base64String!:string;
-  public userProfileImage:Subject<any>
+export class UserFormPresenterService implements OnInit {
+  public userImage!: File;
+  public base64String!: any;
+  public userProfileImage: Subject<any>
   public userData: Subject<user>;
   public userData$: Observable<user>
 
   /**
    * 
    * @param formBuilder 
+   * @param _dataCommunicationService 
    */
   constructor(private formBuilder: FormBuilder, public _dataCommunicationService: DataCommunicationService) {
     this.userData = new Subject();
     this.userData$ = this.userData.asObservable()
     this.userProfileImage = new Subject()
+  }
+
+  ngOnInit(): void {
+
   }
 
 
@@ -31,13 +36,13 @@ export class UserFormPresenterService {
   public buildForm(): FormGroup {
     return this.formBuilder.group({
       id: [''],
-      name: ['', [Validators.required]],
+      name: ['', [Validators.required, Validators.pattern(/^[a-zA-Z\s]*$/), Validators.minLength(3), Validators.maxLength(15)]],
       address: ['', [Validators.required]],
-      mobileNo: ['', [Validators.required]],
-      email: ['', [Validators.required]],
+      mobileNo: ['', [Validators.required, Validators.pattern(/^[0-9\s]*$/), Validators.minLength(10)]],
+      email: ['', [Validators.required, Validators.email]],
       gender: ['', [Validators.required]],
       birthDate: ['', [Validators.required]],
-      profile:['']
+      profile: ['', [Validators.required]]
     })
   }
 
@@ -45,17 +50,14 @@ export class UserFormPresenterService {
    * to select file from local pc 
    * @param event 
    */
-  onSelectFile(event:any){
-this.userImage= event.target.File[0];
-
-const fileReader = new FileReader();
-
-fileReader.readAsDataURL(this.userImage);
- 
-fileReader.onload = ()=>{
-  this.base64String = String(fileReader.result)
-  this.userProfileImage.next(this.base64String)
-}
+  onSelectFile(event: any) {
+    this.userImage = event.target.files[0];
+    let fileReader = new FileReader();
+    fileReader.readAsDataURL(this.userImage);
+    fileReader.onload = () => {
+      this.base64String = fileReader.result
+      this.userProfileImage.next(this.base64String)
+    }
   }
 
   /**
@@ -63,8 +65,11 @@ fileReader.onload = ()=>{
    */
   submitData(userData: FormGroup) {
     userData.controls['profile'].setValue(this.base64String)
-    this.userData.next(userData.value)
-    this._dataCommunicationService.userId.next('')
+    if (userData.valid) {
+      this.userData.next(userData.value)
+      this._dataCommunicationService.userId.next('')
+      userData.reset()
+    }
   }
 
   /**

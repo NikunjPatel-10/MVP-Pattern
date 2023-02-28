@@ -1,59 +1,105 @@
+<form class="formsize p-4  rounded-3" [formGroup]="userForm">
 
-    <form class="formsize p-4  rounded-3" [formGroup]="userForm">
-        <div>
-            <input type="file" class="form-control" (change)="onSelectFile($event)">
-        </div>
-        <div>
-            <label for="validationServer01" class="form-label">Name:</label>
-            <input type="text"  id="" class="form-control" formControlName="name"   >
-           
-        </div>
-        <div>
-            <label for="validationServer01" class="form-label">Address:</label>
-            <input type="text"  id="" class="form-control" formControlName="address"  >
-        
-        </div>
-        <div>
-            <label>Mobile No:</label>
-            <input type="text" id="" class="form-control" formControlName="mobileNo"   >
-           
-        </div>
+    <div class="position-relative">
+        <figure class="profile-wrapper mb-0">
+            <img src="{{base64?base64:editProfile}}" alt="">
+        </figure>
+        <label for="image-upload" class=" position-absolute icon-wrapper"><span
+                class="bi bi-plus fs-5  icon-bg "></span></label>
+        <input type="file" class="d-none" id="image-upload" (change)="onSelectFile($event)" />
+    </div>
 
-        <div class="mb-3">
-            <label for="validationServer01" class="form-label">Email:</label>
-            <input type="text" id="" class="form-control" formControlName="email"  >
-           
+    <!-- username  -->
+    <div>
+        <label for="validationServer01" class="form-label">Name:</label>
+        <input type="text" id="" class="form-control" formControlName="name"
+            [ngClass]="{'is-valid':userFormControl['name'].valid , 'is-invalid':userFormControl['name'].invalid && userFormControl['name'].touched}">
+        <div class="text-danger"
+            *ngIf="userFormControl['name'].invalid && (isSubmitted || userFormControl['name'].touched || userFormControl['name'].dirty)">
+            <div *ngIf="userFormControl['name'].errors?.['required']">This field is required</div>
+            <div *ngIf="userFormControl['name'].errors?.['pattern']">only alphabets are allowed</div>
+            <div *ngIf="userFormControl['name'].errors?.['minlength']"> minimum 3 characters are required </div>
+            <div *ngIf="userFormControl['name'].errors?.['maxlength']"> maximum 15 characters are required </div>
         </div>
-        <div>
-            <label for="validationServer01" class="form-label">Gender: </label>
-            <div class="d-flex">
-                <div class="form-check me-3">
-                    <input class="form-check-input" type="radio" id="exampleRadios1" value="male"
-                        formControlName="gender">
-                    <label class="form-check-label" for="exampleRadios1">
-                        Male
-                    </label>
-                </div>
-                <div class="form-check">
-                    <input class="form-check-input" type="radio" id="exampleRadios1" value="female"
-                        formControlName="gender">
-                    <label class="form-check-label" for="exampleRadios1">
-                        Female
-                    </label>
-                </div>
+    </div>
+
+    <!-- address  -->
+    <div>
+        <label for="validationServer01" class="form-label">Address:</label>
+        <input type="text" id="" class="form-control" formControlName="address"
+            [ngClass]="{'is-valid':userFormControl['address'].valid , 'is-invalid':userFormControl['address'].invalid && userFormControl['name'].touched}">
+        <div class="text-danger"
+            *ngIf="userFormControl['address'].invalid && (isSubmitted || userFormControl['address'].touched || userFormControl['address'].dirty)">
+            <div *ngIf="userFormControl['address'].errors?.['required']">This field is required</div>
+        </div>
+    </div>
+
+    <!-- mobile no  -->
+    <div>
+        <label>Mobile No:</label>
+        <input type="text" id="" class="form-control" formControlName="mobileNo"
+            [ngClass]="{'is-valid':userFormControl['mobileNo'].valid , 'is-invalid':userFormControl['mobileNo'].invalid && userFormControl['mobileNo'].touched}">
+        <div class="text-danger"
+            *ngIf="userFormControl['mobileNo'].invalid && (isSubmitted || userFormControl['mobileNo'].touched || userFormControl['mobileNo'].dirty)">
+            <div *ngIf="userFormControl['mobileNo'].errors?.['required']">This field is required</div>
+            <div *ngIf="userFormControl['mobileNo'].errors?.['pattern']">only numbers are allowed</div>
+            <div *ngIf="userFormControl['mobileNo'].errors?.['minlength']">minimum 10 numbers are required</div>
+        </div>
+    </div>
+
+    <!-- email  -->
+    <div class="mb-3">
+        <label for="validationServer01" class="form-label">Email:</label>
+        <input type="text" id="" class="form-control" formControlName="email"
+            [ngClass]="{'is-valid':userFormControl['email'].valid , 'is-invalid':userFormControl['email'].invalid && userFormControl['email'].touched}">
+        <div class="text-danger"
+            *ngIf="userFormControl['email'].invalid && (isSubmitted || userFormControl['email'].touched || userFormControl['email'].dirty)">
+            <div *ngIf="userFormControl['email'].errors?.['required']">This field is required</div>
+            <div *ngIf="userFormControl['email'].errors?.['email']">email is required</div>
+        </div>
+    </div>
+
+    <!-- gender  -->
+    <div>
+        <label for="validationServer01" class="form-label">Gender: </label>
+        <div class="d-flex">
+            <div class="form-check me-3">
+                <input class="form-check-input" type="radio" id="exampleRadios1" value="male" formControlName="gender">
+                <label class="form-check-label" for="exampleRadios1">
+                    Male
+                </label>
             </div>
-          
+            <div class="form-check">
+                <input class="form-check-input" type="radio" id="exampleRadios1" value="female"
+                    formControlName="gender">
+                <label class="form-check-label" for="exampleRadios1">
+                    Female
+                </label>
+            </div>
         </div>
-      
-        <div class="mb-3">
-            <label for="validationServer01" class="form-label">BirthDate:</label>
-            <input type="Date" id="" class="form-control" formControlName="birthDate">
-           
+        <div class="text-danger"
+            *ngIf="userFormControl['gender'].invalid &&(isSubmitted || userFormControl['gender'].touched || userFormControl['gender'].dirty)">
+            <div *ngIf="userFormControl['gender'].errors?.['required']">This field is required</div>
         </div>
-        <div class="d-flex justify-content-center align-item-center ">
-            <button type="button" class="btn btn-primary me-3"  (click)="saveUser()" [routerLink]="['/user/list']">Submit</button>
-            <button type="button" class="btn btn-danger" (click)="cancelFormData()" [routerLink]="['/user/list']">Cancel</button>
-        </div>
+    </div>
 
-    </form>
+    <!-- birthDate -->
+    <div class="mb-3">
+        <label for="validationServer01" class="form-label">BirthDate:</label>
+        <input type="Date" id="" class="form-control" formControlName="birthDate">
 
+        <div class="text-danger"
+            *ngIf="userFormControl['birthDate'].invalid && (isSubmitted || userFormControl['birthDate'].touched || userFormControl['birthDate'].dirty)">
+            <div *ngIf="userFormControl['birthDate'].errors?.['required']">This field is required</div>
+        </div>
+    </div>
+
+
+    <div class="d-flex justify-content-center align-item-center ">
+        <button type="button" class="btn btn-primary me-3" (click)="saveUser()"
+            [routerLink]="['/user/list']">Submit</button>
+        <button type="button" class="btn btn-danger" (click)="cancelFormData()"
+            [routerLink]="['/user/list']">Cancel</button>
+    </div>
+
+</form>

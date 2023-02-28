@@ -1,0 +1,35 @@
+.formsize{
+    width: 600px;
+    background-color: white;
+
+    .profile-wrapper {
+      width: 100px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 50%;
+      background: url(../../../assets/Images/form-profie-img.jpg);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: cover;
+      img {
+        height: auto;
+        width: 100%;
+      }
+    }
+
+
+    .icon-wrapper {
+     bottom:11%;
+     left: 12%;
+
+
+  }
+    .icon-bg {
+      background: linear-gradient(270.17deg, #2D6DD5 1.37%, #35B5C8 99.86%);
+      border-radius: 50%;
+      height: 20px;
+      width: 20px;
+      color: white;
+  }
+}
+

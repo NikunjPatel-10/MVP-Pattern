@@ -10,32 +10,36 @@ import { UserFormPresenterService } from '../user-form-presenter/user-form-prese
   templateUrl: './user-form-presentation.component.html',
   styleUrls: ['./user-form-presentation.component.scss'],
   viewProviders: [UserFormPresenterService],
-  changeDetection:ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class UserFormPresentationComponent implements OnInit {
-  public base64!: string
+  public base64!: any
+  public isSubmitted: boolean
   /**
  *  create a output to add a userdata 
  */
 
   @Output() public addUser: EventEmitter<user>
-  @Output() public userId: EventEmitter<user>
+  @Output() public userId: EventEmitter<number>
   @Output() public editUserData: EventEmitter<any>
 
   /**
    * get data from container by Input method
    */
-  @Input() public set editData(res: any | null) {
+  @Input() public set editData(res: user | null) {
 
 
     if (res) {
       this._editData = res
-      debugger
       this.userForm.patchValue(this._editData)
+      /**
+       * to get the profile pic in the user
+       */
+      this.editProfile = this.base64 ? this.base64 : this._editData.profile
     }
   }
 
-  public get editData(): any {
+  public get editData(): user {
     return this._editData
   }
 
@@ -43,6 +47,10 @@ export class UserFormPresentationComponent implements OnInit {
    * cretae a userform for user
    *  */
   public userForm: FormGroup
+  /**
+   * variables
+   */
+  public editProfile?: string
   private _editData: any
   public text: string = ''
   /**
@@ -51,12 +59,12 @@ export class UserFormPresentationComponent implements OnInit {
    * @param _cdkOverlayService 
    * @param _dataCommunicationService 
    */
-  constructor(private _userFormPresenterService: UserFormPresenterService, private _cdkOverlayService: CdkOverlayService, public _dataCommunicationService: DataCommunicationService,   private _changeDetector: ChangeDetectorRef,) {
+  constructor(private _userFormPresenterService: UserFormPresenterService, private _cdkOverlayService: CdkOverlayService, public _dataCommunicationService: DataCommunicationService, private _changeDetector: ChangeDetectorRef,) {
     this.userForm = this._userFormPresenterService.buildForm()
     this.addUser = new EventEmitter();
     this.userId = new EventEmitter();
     this.editUserData = new EventEmitter()
-
+    this.isSubmitted = false
 
     console.log(this._editData);
   }
@@ -82,22 +90,30 @@ export class UserFormPresentationComponent implements OnInit {
       }
 
     })
+  }
 
-
+  /**
+   * to get formcontrol
+   */
+  public get userFormControl() {
+    return this.userForm.controls
   }
 
   onSelectFile(event: any) {
     this._userFormPresenterService.onSelectFile(event);
-  const a=  this._userFormPresenterService.base64String;
+    // const a =  this._userFormPresenterService.base64String;
     this._userFormPresenterService.userProfileImage.subscribe((res) => {
-      this.base64 = res;
       this._changeDetector.markForCheck()
+      this.base64 = res;
+      console.log(this.base64);
+
     })
   }
 
   // to save userData 
 
   public saveUser() {
+    this.isSubmitted = true
     this._userFormPresenterService.submitData(this.userForm);
     this._cdkOverlayService.overlayRef.detach()
 

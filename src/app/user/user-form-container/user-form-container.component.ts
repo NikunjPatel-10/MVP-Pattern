@@ -12,7 +12,7 @@ import { UserFormPresenterService } from './user-form-presenter/user-form-presen
   styleUrls: ['./user-form-container.component.scss']
 })
 export class UserFormContainerComponent implements OnInit{
-  public editData: any
+  public editData$: Observable<any>
   public updateData :any
   public id:any
   /**
@@ -21,7 +21,7 @@ export class UserFormContainerComponent implements OnInit{
    * @param router 
    */
   constructor(private user_api_service: UserApiService, private router: Router, public _dataCommunicationService: DataCommunicationService) {
-  
+  this.editData$ = new Observable()
   }
 
 ngOnInit(): void {
@@ -44,13 +44,9 @@ ngOnInit(): void {
    * get userdata from the id
    * @param id 
    */
-  public editUserData(id: any) {
+  public editUserData(id: number) {
     this.id = id
-    this.user_api_service.getUserById(id).subscribe(res => {
-      this.editData = res
-      console.log(res);
-   
-    })
+    this.editData$ = this.user_api_service.getUserById(this.id)
   }
 
   /**
@@ -65,7 +61,7 @@ ngOnInit(): void {
      
   }
 
-   getData(){
+  public  getData(){
     this.user_api_service.getUserData().subscribe((updateData: user[]) => {
       this._dataCommunicationService.updateData.next(updateData)    
     })

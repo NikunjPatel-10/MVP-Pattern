@@ -32,6 +32,7 @@ export class UserListPresentationComponent {
   }
 
   private _userList!: user[];
+  public searchUserData:string
   /**
    * create a output to send data in container component
    */
@@ -47,6 +48,7 @@ export class UserListPresentationComponent {
    */
   constructor(public _userListPresenterService: UserListPresenterService, private _cdkOverlayService: CdkOverlayService, private router: Router, public _dataCommunicationService: DataCommunicationService) {
     this.deleteUserData = new EventEmitter()
+    this.searchUserData = ''
     /**
      * get a data form presenter and send it to container using output method
      */

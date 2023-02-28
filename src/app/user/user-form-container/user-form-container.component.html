@@ -1,7 +1,7 @@
 
 <app-user-form-presentation  (addUser)="saveUserData($event)"
                               (userId)="editUserData($event)"
-                              [editData]="editData"
+                              [editData]="editData$ |async"
                               (editUserData)="updateUserData($event)">
 
 </app-user-form-presentation>

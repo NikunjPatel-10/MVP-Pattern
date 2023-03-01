@@ -56,24 +56,19 @@
 }
 
 #toggle-sidebar:checked+.sidebar-bg-color {
-   width: 0px;
+  width: 0px;
 }
 
-#close{
+#close {
   display: none;
 }
 
+
+
+
 @media(max-width:576px) {
 
-
-  .close-menu {
-    display: block;
-    position: absolute;
-    top: 0;
-    right: 0;
-    font-size: 20px;
-    padding: 10px;
-  }
+ 
 
   .sidebar {
     position: absolute;
@@ -84,37 +79,9 @@
     background-color: $main-bg-color;
   }
 
-  
-  
-  // #close:checked + .sidebar {
-  // display: none;
-  // }
-  // #close{
-  //   display: none;
-  //   &:checked {
-      
-  //     ~.backdrop {
-  //       display: block;
-  //     }
-  //   }
-  // }
-  // .backdrop {
-  //   display: none;
-  //   position: absolute;
-  //   top: 0;
-  //   left: 0;
-  //   right: 0;
-  //   bottom: 0;
-  //   z-index: 99;
-  //   background-color: rgba($black, 0.5);
-  // }
-  // #close:checked{
-  //     .sidebar-overlay{
-  //       display: none;
-  //     }
-  // }
- 
+  #close:checked + .sidebar {
+   display: none;
+  }
+
+
 }
-
-
-

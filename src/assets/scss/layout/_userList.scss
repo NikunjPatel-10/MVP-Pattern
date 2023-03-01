@@ -9,3 +9,14 @@
         border-radius: 50%;
     }
 }
+
+.btn-wrapper{
+    white-space: nowrap;
+}
+
+@media(max-width:576px) {    
+.table-mobile{
+    overflow: auto;
+}
+
+}

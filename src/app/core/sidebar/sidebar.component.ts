@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { CommunicationService } from '../service/communication.service';
 
 @Component({
   selector: 'app-sidebar',
   templateUrl: './sidebar.component.html',
   styleUrls: ['./sidebar.component.scss']
 })
-export class SidebarComponent {
+export class SidebarComponent implements OnInit{
+
+  constructor(private communication:CommunicationService) {
+
+  }
+ngOnInit(): void {
+
+  
+}
 
 }

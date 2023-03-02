@@ -8,7 +8,7 @@ import { CommunicationService } from '../service/communication.service';
 })
 export class SidebarComponent implements OnInit{
 
-  constructor(private communication:CommunicationService) {
+  constructor() {
 
   }
 ngOnInit(): void {

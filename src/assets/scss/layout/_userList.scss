@@ -1,22 +1,59 @@
-.list-img-wrapper{
-    height: 50px;
-    width: 50px;
-    overflow: hidden;
+.list-img-wrapper {
+  height: 50px;
+  width: 50px;
+  overflow: hidden;
 
-    img{
-        height: 100%;
-        width: 100%;
-        border-radius: 50%;
-    }
+  img {
+    height: 100%;
+    width: 100%;
+    border-radius: 50%;
+  }
 }
 
-.btn-wrapper{
-    white-space: nowrap;
+
+
+.userlist {
+  white-space: nowrap;
 }
 
-@media(max-width:576px) {    
-.table-mobile{
+@media only screen and (max-width: 576px)
+  {
+
+  /* Force table to not be like tables anymore */
+  table,
+  thead,
+  tbody,
+  th,
+  td,
+  tr {
+    display: block;
+  }
+
+  /* Hide table headers (but not display: none;, for accessibility) */
+  thead th {
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+  }
+
+  tr {
+    border: 1px solid #ccc;
+  }
+
+  td {
+    /* Behave  like a "row" */
+    border: none;
+    border-bottom: 1px solid #eee;
+    position: relative;
+    padding-left: 50%;
+  }
+  .list-icon{
+    display: none;
+  }
+  .btn-wrapper{
+   text-align: center;
+  }
+  .table-mobile{
     overflow: auto;
-}
-
+  }
 }

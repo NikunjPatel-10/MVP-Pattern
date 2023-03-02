@@ -19,17 +19,21 @@ export class UserListContainerComponent implements OnInit {
     this.userList$ = this.user_api_service.getUserData()
   }
 
-  
-/**
- * 
- * @param id 
- */
-deleteUserList(id:any){
-this.user_api_service.deleteUserData(id).subscribe(()=>{
-  confirm("are you sure do you wnat to delete data")
-    this.userList$ =  this.user_api_service.getUserData()
-})
 
-}
+  /**
+   * 
+   * @param id 
+   */
+  deleteUserList(id: any) {
+    
+    if(id[1]){
+   
+      this.user_api_service.deleteUserData(id[0]).subscribe((res) => {
+        if(res){
+          this.userList$ = this.user_api_service.getUserData()
+        }
+      })
+    }
+  }
 
 }

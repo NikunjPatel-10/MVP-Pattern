@@ -14,6 +14,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import { UserApiService } from './service/user-api.service';
 import { DataCommunicationService } from './service/data-communication.service';
 import { SharedModule } from "../shared/shared.module";
+import { DeleteUserComponent } from './delete-user/delete-user.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { SharedModule } from "../shared/shared.module";
         UserListPresentationComponent,
         UserDetailContainerComponent,
         UserDetailPresentationComponent,
+        DeleteUserComponent,
     ],
     providers: [UserApiService],
     imports: [
